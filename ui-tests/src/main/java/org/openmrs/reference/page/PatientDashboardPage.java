@@ -4,7 +4,7 @@ import org.openmrs.uitestframework.page.AbstractBasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
+import org.openqa.selenium.support.ui.Select;
 
 
 public class PatientDashboardPage extends AbstractBasePage {
@@ -20,7 +20,9 @@ public class PatientDashboardPage extends AbstractBasePage {
     private static final By VISIT_LINK = By.className("toast-item-wrapper");
     private static final By VISIT_LINK_2 = By.className("visit-link");
 	private static final By YES = By.cssSelector("#end-visit-dialog .confirm");
-
+	private static final By ADMIT_TO_IMPATIENT = By.linkText("Admit to Inpatient");
+	private static final By SAVE = By.xpath("//input[@value='Save']");
+	private static final By EXIT_FROM_IMPATIENT = (By.linkText("Exit from Inpatient"));
 
     public PatientDashboardPage(WebDriver driver) {
 	    super(driver);
@@ -38,6 +40,30 @@ public class PatientDashboardPage extends AbstractBasePage {
 		clickOn(YES);
 	}
 
+	public void clickOnSave(){
+		clickOn(SAVE);
+	}
+
+
+	public void clickOnAdmitToImpatient(){
+		clickOn(ADMIT_TO_IMPATIENT);
+	}
+
+	public boolean impatientPresent(){
+		try {
+			return driver.findElement(ADMIT_TO_IMPATIENT) != null;
+		}
+		catch (Exception ex) {
+			return false;
+		}
+	}
+
+	public void exitFromImpatient(){
+		clickOn(EXIT_FROM_IMPATIENT);
+		new Select(driver.findElement(By.id("w5"))).selectByVisibleText("Unknown Location");
+		clickOn(SAVE);
+
+	}
 
 	@Override
     public String expectedUrlPath() {
