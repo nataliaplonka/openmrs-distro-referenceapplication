@@ -35,6 +35,7 @@ public class ProviderTest extends TestBase {
     }
 
     //combined test for RA-747 and RA-748
+    @Ignore
     @Test
     public void addRetireProviderTest() {
         homePage.goToAdministration();
