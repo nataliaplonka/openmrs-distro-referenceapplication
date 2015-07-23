@@ -15,7 +15,6 @@ public class ComeBackToApplicationAfterLogoutTest extends TestBase {
 
     private HomePage homePage;
     private HeaderPage headerPage;
-    private ActiveVisitsPage activeVisitsPage;
 
 
     @Before
@@ -23,7 +22,6 @@ public class ComeBackToApplicationAfterLogoutTest extends TestBase {
         homePage = new HomePage(driver);
         loginPage.loginAsAdmin();
         assertPage(homePage);
-        activeVisitsPage = new ActiveVisitsPage(driver);
         headerPage = new HeaderPage(driver);
     }
     @Test
